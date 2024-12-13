@@ -7,12 +7,13 @@ import styles from "./header.module.css";
 import logo from "./../../gitHub-mark-64px.png";
 import { fetchRepos, setSelectedUserName } from "../../store/actions/repos";
 import { getSelectedUserName } from "../../store/selectors/selectors";
-import { getRepoList } from "../../store/selectors/selectors";
+import { getRepoList, getIsLoading } from "../../store/selectors/selectors";
 
 const Header = () => {
   const dispatch = useDispatch();
 
   const selectedUserName = useSelector(getSelectedUserName);
+  const isLoading = useSelector(getIsLoading);
   const repoList = useSelector(getRepoList);
 
   const starCount = useMemo(() => repoList.reduce(
@@ -49,11 +50,13 @@ const Header = () => {
     handleButtonClick();
   }, [dispatch, handleButtonClick]);
 
+  const shouldShowRepoStats = !isLoading && repoList && repoList.length > 0;
+
   return (
     <div className={styles.header}>
       <div className={styles.home}>
         <img src={logo} alt="logo" />
-        <RepoStats starCount={starCount} forkCount={forkCount} />
+        { shouldShowRepoStats ? <RepoStats starCount={starCount} forkCount={forkCount} /> : <></> }
       </div>
       <div className={styles.menu}>
         <input
