@@ -51,8 +51,10 @@ const Header = () => {
 
   return (
     <div className={styles.header}>
-      <img src={logo} alt="logo" />
-      <RepoStats starCount={starCount} forkCount={forkCount} />
+      <div className={styles.home}>
+        <img src={logo} alt="logo" />
+        <RepoStats starCount={starCount} forkCount={forkCount} />
+      </div>
       <div className={styles.menu}>
         <input
           type="text"
