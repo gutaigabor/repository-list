@@ -55,8 +55,8 @@ const Header = () => {
   }, [dispatch, inSettings]);
 
   useMemo(() => {
-    // TODO: from env
-    dispatch(setSelectedUserName('ericelliott'));
+    const defaultUserName = process.env.REACT_APP_DEFAULT_USER_NAME || undefined;
+    dispatch(setSelectedUserName(defaultUserName));
     handleButtonClick();
   }, [dispatch, handleButtonClick]);
 
