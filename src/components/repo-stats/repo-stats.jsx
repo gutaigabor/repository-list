@@ -10,7 +10,7 @@ const RepoStats = (props) => {
   const isForkVisible = useSelector(getForkVisible);
   const isWatcherVisible = useSelector(getWatcherVisible);
 
-  if (!isStarVisible && !isForkVisible) return <></>;
+  if (!isStarVisible && !isForkVisible && !isWatcherVisible) return <></>;
 
   return (
     <div>
