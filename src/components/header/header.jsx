@@ -80,7 +80,7 @@ const Header = () => {
           <i className={`fas fa-search ${styles.icon}`}></i> List repos
         </button>
       </div>
-      <div onClick={handleSettingsClick}>
+      <div onClick={handleSettingsClick} className={styles.settings}>
         <i className={`fas fa-gear ${styles.settings_icon}`}></i>
       </div>
     </div>

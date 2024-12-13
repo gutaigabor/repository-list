@@ -13,7 +13,8 @@
 .home {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: left;
+  width: 200px;
 }
 
 @media (max-width: 480px) {
@@ -51,6 +52,11 @@
 
 .icon {
   margin-right: 5px;
+}
+
+.settings {
+  width: 27px;
+  text-align: right;
 }
 
 .settings_icon {
