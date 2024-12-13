@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import styles from "./header.module.css";
@@ -28,6 +28,12 @@ const Header = () => {
   const handleButtonClick = useCallback(() => {
     dispatch(fetchRepos());
   }, [dispatch]);
+
+  useMemo(() => {
+    // TODO: from env
+    dispatch(setSelectedUserName('ericelliott'));
+    handleButtonClick();
+  }, [dispatch, handleButtonClick]);
 
   return (
     <div className={styles.header}>
