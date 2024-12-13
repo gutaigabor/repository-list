@@ -1,15 +1,29 @@
 import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import RepoStats from "../repo-list/ui/repo-stats/repo-stats";
+
 import styles from "./header.module.css";
 import logo from "./../../gitHub-mark-64px.png";
 import { fetchRepos, setSelectedUserName } from "../../store/actions/repos";
 import { getSelectedUserName } from "../../store/selectors/selectors";
+import { getRepoList } from "../../store/selectors/selectors";
 
 const Header = () => {
   const dispatch = useDispatch();
 
   const selectedUserName = useSelector(getSelectedUserName);
+  const repoList = useSelector(getRepoList);
+
+  const starCount = useMemo(() => repoList.reduce(
+    (accumulator, repo) => accumulator + repo.stargazers_count,
+    0,
+  ), [repoList]);
+
+  const forkCount = useMemo(() => repoList.reduce(
+    (accumulator, repo) => accumulator + repo.forks_count,
+    0,
+  ), [repoList]);
 
   const handleSearchTextChange = useCallback(
     (event) => {
@@ -38,6 +52,7 @@ const Header = () => {
   return (
     <div className={styles.header}>
       <img src={logo} alt="logo" />
+      <RepoStats starCount={starCount} forkCount={forkCount} />
       <div className={styles.menu}>
         <input
           type="text"
