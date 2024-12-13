@@ -1,6 +1,6 @@
 import React from "react";
 
-import RepoStats from "../repo-list/ui/repo-stats/repo-stats";
+import RepoStats from "../repo-stats/repo-stats";
 
 import styles from "./repo.module.css";
 

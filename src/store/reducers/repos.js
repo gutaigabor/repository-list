@@ -8,6 +8,10 @@ import {
   prevPage,
   selectRepo,
   setSelectedUserName,
+  setInSettings,
+  setStarVisibility,
+  setForkVisibility,
+  setWatcherVisibility
 } from "../actions/repos";
 
 const initialState = {
@@ -17,6 +21,10 @@ const initialState = {
   selectedRepo: null,
   selectedPage: 1,
   selectedUserName: "",
+  inSettings: false,
+  isStarVisible: true,
+  isForkVisible: true,
+  isWatcherVisible: false,
 };
 
 const _fetchRepos = (state) => ({
@@ -73,6 +81,26 @@ const _prevPage = (state) => ({
   selectedPage: state.selectedPage - 1,
 });
 
+const _setInSettings = (state, { inSettings }) => ({
+  ...state,
+  inSettings: inSettings,
+});
+
+const _setStarVisibility = (state, { isStarVisible }) => ({
+  ...state,
+  isStarVisible: isStarVisible,
+});
+
+const _setForkVisibility = (state, { isForkVisible }) => ({
+  ...state,
+  isForkVisible: isForkVisible,
+});
+
+const _setWatcherVisibility = (state, { isWatcherVisible }) => ({
+  ...state,
+  isWatcherVisible: isWatcherVisible,
+});
+
 const reducers = {
   [fetchRepos().type]: _fetchRepos,
   [fetchReposStart().type]: _fetchReposStart,
@@ -83,6 +111,10 @@ const reducers = {
   [clearSelectedRepo().type]: _clearSelectRepo,
   [nextPage().type]: _nextPage,
   [prevPage().type]: _prevPage,
+  [setInSettings().type]: _setInSettings,
+  [setStarVisibility().type]: _setStarVisibility,
+  [setForkVisibility().type]: _setForkVisibility,
+  [setWatcherVisibility().type]: _setWatcherVisibility,
 };
 
 const reducer = (state = initialState, action) =>

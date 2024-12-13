@@ -38,3 +38,23 @@ export const prevPage = () => ({
 export const nextPage = () => ({
   type: "NEXT_PAGE",
 });
+
+export const setInSettings = (inSettings) => ({
+  type: "SET_IN_SETTINGS",
+  inSettings: inSettings,
+});
+
+export const setStarVisibility = (isVisible) => ({
+  type: "SET_STAR_VISIBILITY",
+  isStarVisible: isVisible,
+});
+
+export const setForkVisibility = (isVisible) => ({
+  type: "SET_FORK_VISIBILITY",
+  isForkVisible: isVisible,
+});
+
+export const setWatcherVisibility = (isVisible) => ({
+  type: "SET_WATCHER_VISIBILITY",
+  isWatcherVisible: isVisible,
+});

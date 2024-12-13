@@ -1,13 +1,13 @@
 import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import RepoStats from "../repo-list/ui/repo-stats/repo-stats";
+import RepoStats from "../repo-stats/repo-stats";
 
 import styles from "./header.module.css";
 import logo from "./../../gitHub-mark-64px.png";
-import { fetchRepos, setSelectedUserName } from "../../store/actions/repos";
+import { fetchRepos, setSelectedUserName, setInSettings } from "../../store/actions/repos";
 import { getSelectedUserName } from "../../store/selectors/selectors";
-import { getRepoList, getIsLoading } from "../../store/selectors/selectors";
+import { getRepoList, getIsLoading, getInSettings } from "../../store/selectors/selectors";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -15,6 +15,7 @@ const Header = () => {
   const selectedUserName = useSelector(getSelectedUserName);
   const isLoading = useSelector(getIsLoading);
   const repoList = useSelector(getRepoList);
+  const inSettings = useSelector(getInSettings);
 
   const starCount = useMemo(() => repoList.reduce(
     (accumulator, repo) => accumulator + repo.stargazers_count,
@@ -44,6 +45,10 @@ const Header = () => {
     dispatch(fetchRepos());
   }, [dispatch]);
 
+  const handleSettingsClick = useCallback(() => {
+    dispatch(setInSettings(!inSettings));
+  }, [dispatch, inSettings]);
+
   useMemo(() => {
     // TODO: from env
     dispatch(setSelectedUserName('ericelliott'));
@@ -69,6 +74,9 @@ const Header = () => {
         <button onClick={handleButtonClick} disabled={selectedUserName === ""}>
           <i className={`fas fa-search ${styles.icon}`}></i> List repos
         </button>
+      </div>
+      <div onClick={handleSettingsClick}>
+        <i className={`fas fa-gear ${styles.settings_icon}`}></i>
       </div>
     </div>
   );
