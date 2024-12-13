@@ -27,6 +27,11 @@ const Header = () => {
     0,
   ), [repoList]);
 
+  const watcherCount = useMemo(() => repoList.reduce(
+    (accumulator, repo) => accumulator + repo.watchers_count,
+    0,
+  ), [repoList]);
+
   const handleSearchTextChange = useCallback(
     (event) => {
       dispatch(setSelectedUserName(event.currentTarget.value));
@@ -61,7 +66,7 @@ const Header = () => {
     <div className={styles.header}>
       <div className={styles.home}>
         <img src={logo} alt="logo" />
-        { shouldShowRepoStats ? <RepoStats starCount={starCount} forkCount={forkCount} /> : <></> }
+        { shouldShowRepoStats ? <RepoStats starCount={starCount} forkCount={forkCount} watcherCount={watcherCount} /> : <></> }
       </div>
       <div className={styles.menu}>
         <input

@@ -4,11 +4,11 @@ import RepoStats from "../repo-stats/repo-stats";
 
 import styles from "./repo.module.css";
 
-const Repo = ({ onBack, repoData: { name, description, forks_count, stargazers_count } }) => (
+const Repo = ({ onBack, repoData: { name, description, forks_count, stargazers_count, watchers_count } }) => (
   <div className={styles.container}>
     <div className="box box--wide">
       <div className="title">{name}</div>
-      <RepoStats starCount={stargazers_count} forkCount={forks_count} />
+      <RepoStats starCount={stargazers_count} forkCount={forks_count} watcherCount={watchers_count}/>
       <div className={styles.content}>{description}</div>
     </div>
     <button onClick={onBack}>Back</button>
